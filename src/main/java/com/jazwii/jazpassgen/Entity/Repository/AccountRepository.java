@@ -1,6 +1,6 @@
-package com.jazwii.jazpassgen.Classes.Repository;
+package com.jazwii.jazpassgen.Entity.Repository;
 
-import com.jazwii.jazpassgen.Classes.Model.Account;
+import com.jazwii.jazpassgen.Entity.Model.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

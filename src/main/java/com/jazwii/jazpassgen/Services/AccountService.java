@@ -1,8 +1,8 @@
 package com.jazwii.jazpassgen.Services;
 
-import com.jazwii.jazpassgen.Classes.Model.Account;
-import com.jazwii.jazpassgen.Classes.Model.Role;
-import com.jazwii.jazpassgen.Classes.Repository.AccountRepository;
+import com.jazwii.jazpassgen.Entity.Model.Account;
+import com.jazwii.jazpassgen.Entity.Model.Role;
+import com.jazwii.jazpassgen.Entity.Repository.AccountRepository;
 import com.jazwii.jazpassgen.Exception.Exception.CommonException;
 import com.jazwii.jazpassgen.Pojo.FormData.FormAccount;
 import com.jazwii.jazpassgen.Security.Validator.Account.AccountBeforeCreateValidator;

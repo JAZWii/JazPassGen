@@ -1,4 +1,4 @@
-package com.jazwii.jazpassgen.Classes.Model;
+package com.jazwii.jazpassgen.Entity.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jazwii.jazpassgen.Singleton.DatabaseConstants;

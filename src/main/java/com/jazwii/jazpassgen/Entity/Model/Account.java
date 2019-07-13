@@ -1,4 +1,4 @@
-package com.jazwii.jazpassgen.Classes.Model;
+package com.jazwii.jazpassgen.Entity.Model;
 
 import com.jazwii.jazpassgen.Singleton.ConfigConstants;
 import com.jazwii.jazpassgen.Singleton.DatabaseConstants;

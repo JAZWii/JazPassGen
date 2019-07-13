@@ -1,6 +1,6 @@
 package com.jazwii.jazpassgen.Security.Validator.Account;
 
-import com.jazwii.jazpassgen.Classes.Model.Account;
+import com.jazwii.jazpassgen.Entity.Model.Account;
 import com.jazwii.jazpassgen.Services.AccountService;
 import com.jazwii.jazpassgen.Singleton.MessageConstants;
 import org.springframework.beans.factory.annotation.Autowired;

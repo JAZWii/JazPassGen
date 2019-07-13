@@ -2,7 +2,7 @@ package com.jazwii.jazpassgen.Pojo.ResponseData.Authenticated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.jazwii.jazpassgen.Classes.Model.Account;
+import com.jazwii.jazpassgen.Entity.Model.Account;
 import com.jazwii.jazpassgen.Singleton.RestViews;
 
 public class AccountResponse {

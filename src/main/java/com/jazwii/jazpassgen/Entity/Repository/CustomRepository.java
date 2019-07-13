@@ -1,4 +1,4 @@
-package com.jazwii.jazpassgen.Classes.Repository;
+package com.jazwii.jazpassgen.Entity.Repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

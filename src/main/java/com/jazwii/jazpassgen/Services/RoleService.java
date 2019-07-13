@@ -1,8 +1,8 @@
 package com.jazwii.jazpassgen.Services;
 
-import com.jazwii.jazpassgen.Classes.Model.Account;
-import com.jazwii.jazpassgen.Classes.Model.Role;
-import com.jazwii.jazpassgen.Classes.Repository.RoleRepository;
+import com.jazwii.jazpassgen.Entity.Model.Account;
+import com.jazwii.jazpassgen.Entity.Model.Role;
+import com.jazwii.jazpassgen.Entity.Repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
