@@ -23,47 +23,47 @@ public class ConfigConstants implements Serializable {
         return new BCryptPasswordEncoder();
     }
 
-    @Value("${pvtsar.recover.settings.verification.email.recover.password.length:8}")
+    @Value("${jazpassgen.recover.settings.verification.email.recover.password.length:8}")
     public void setRecoverPasswordCodeLength(int value) {
         RECOVER_PASSWORD_CODE_LENGTH = value;
     }
 
-    @Value("${pvtsar.recover.settings.verification.email.recover.password.max:3}")
+    @Value("${jazpassgen.recover.settings.verification.email.recover.password.max:3}")
     public void setRecoverPasswordCodeMaxTrials(int value) {
         RECOVER_PASSWORD_CODE_MAX_TRIALS = value;
     }
 
-    @Value("${pvtsar.recover.settings.verification.email.recover.password.valid:48}")
+    @Value("${jazpassgen.recover.settings.verification.email.recover.password.valid:48}")
     public void setRecoverPasswordCodeValidHours(int value) {
         RECOVER_PASSWORD_CODE_VALID_HOURS = value;
     }
 
-    @Value("${pvtsar.recover.settings.verification.email.recover.password.characterset}")
+    @Value("${jazpassgen.recover.settings.verification.email.recover.password.characterset}")
     public void setRecoverPasswordCodeCharacterset(String value) {
         RECOVER_PASSWORD_CODE_CHARACTERSET = value;
     }
 
-    @Value("${pvtsar.google.maps.key:ab}")
+    @Value("${jazpassgen.google.maps.key:ab}")
     public void setGoogleMapsKey(String value) {
         GOOGLE_MAPS_KEY = value;
     }
 
-    @Value("${pvtsar.upload.settings.directory}")
+    @Value("${jazpassgen.upload.settings.directory}")
     public void setUploadDirectory(String value) {
         UPLOAD_DIRECTORY = value;
     }
 
-    @Value("${pvtsar.tests.settings.directory}")
+    @Value("${jazpassgen.tests.settings.directory}")
     public void setTestsDirectory(String value) {
         TESTS_DIRECTORY = value;
     }
 
-    @Value("${pvtsar.settings.excel.templates.directory}")
+    @Value("${jazpassgen.settings.excel.templates.directory}")
     public void setTemplatesDirectory(String value) {
         TEMPLATES_DIRECTORY = value;
     }
 
-    @Value("${pvtsar.settings.debug:false}")
+    @Value("${jazpassgen.settings.debug:false}")
     public void setDebugMode(boolean value) {
         DEBUG_MODE = value;
     }
