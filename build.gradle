@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jazwii'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile group: 'javax.mail', name: 'mail', version: '1.5.0-b01'
+
+    //apache 2.0 license
+    compile 'org.springframework.boot:spring-boot-starter-mail'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.security.oauth:spring-security-oauth2'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.security:spring-security-test'
+
+    //LGPL 2.1 license
+    compile 'org.hibernate:hibernate-entitymanager'
+    compile 'org.hibernate:hibernate-core'
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.3.1.Final'
+
+    //apache 2.0 license
+    compile 'com.zaxxer:HikariCP'
+    compile 'com.google.maps:google-maps-services:0.2.6'
+
+    //MPL 2.0
+    compile 'com.h2database:h2'
+
+    //LGPL-2.1
+    compile 'org.mariadb.jdbc:mariadb-java-client'
+    compile 'mysql:mysql-connector-java'
+    compile 'com.microsoft.sqlserver:mssql-jdbc'
+
+    //custom license
+    compile "org.json:json:20141113"
+
+    //apache 2.0 license
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile group: 'com.google.guava', name: 'guava', version: 'r05'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
+}
