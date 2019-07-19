@@ -1,6 +1,9 @@
 package com.jazwii.jazpassgen.Singleton;
 
+import org.springframework.validation.ObjectError;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class MessageConstants implements Serializable {
     public static final String INVALID_OBJECT = "invalid_object";
@@ -21,4 +24,6 @@ public class MessageConstants implements Serializable {
 
     public static final String INVALID_FIRST_NAME = "invalid_server_form_invalid_first_name";
     public static final String INVALID_LAST_NAME = "invalid_server_form_invalid_last_name";
+    public static final String INVALID_LOGIN = "invalid_login_form_invalid";
+    public static final String DUPLICATE_LOGIN ="invalid_login_form_invalid_duplicate" ;
 }

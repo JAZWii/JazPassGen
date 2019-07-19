@@ -1,23 +1,15 @@
-package com.jazwii.jazpassgen.Entity.Model;
+package com.jazwii.jazpassgen.Pojo.FormData;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.jazwii.jazpassgen.Singleton.DatabaseConstants;
+import com.jazwii.jazpassgen.Entity.Model.Account;
 import com.jazwii.jazpassgen.Singleton.RestViews;
 
 import javax.persistence.*;
-import java.util.Date;
 
-@Entity
-@Table(name = DatabaseConstants.TABLE_ADDRESS)
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(RestViews.AccountPublicMinimal.class)
-    private int id;
-
+public class FormAddress {
     @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+            @JoinColumn(name = "report_id", referencedColumnName = "id", nullable = false)
     })
     private Account account;
 
@@ -25,10 +17,6 @@ public class Address {
     @JsonView(RestViews.AccountPublicDetailed.class)
     private String addressName;
 
-    @Column(name = "former_address_name", length = 256)
-    @JsonView(RestViews.AddressPublicCriticalMinimal.class)
-    private String formerAddressName;
-    
     @Column(name = "full_name", length = 128, nullable = false)
     @JsonView(RestViews.AccountPublicDetailed.class)
     private String fullName;
@@ -61,37 +49,10 @@ public class Address {
     @JsonView(RestViews.AccountCriticalDetailed.class)
     private String country;
 
-    @Column(name = "create_date", columnDefinition = "DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonView(RestViews.AddressCriticalDetailed.class)
-    private Date createDate = new Date();
-
-    @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "removed_by", referencedColumnName = "id")
-    })
-    @JsonView(RestViews.AddressPublicCriticalMinimal.class)
-    private Account removedBy;
-
-    @Column(name = "remove_date", columnDefinition = "DATETIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonView(RestViews.AddressPublicCriticalMinimal.class)
-    private Date removeDate;
-
-    @Column(name = "removed", nullable = false)
-    @JsonView(RestViews.AddressPublicCriticalMinimal.class)
-    private boolean removed = false;
-
-    @ManyToOne(targetEntity = Address.class, fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "former_address_id", referencedColumnName = "id")
-    })
-    private Address formerAddress;
-
-    public Address() {
+    public FormAddress() {
     }
 
-    public Address(Account account,String addressName, String fullName, String address1, String address2, String city, String state, int zip, String phone, String country, Date createDate) {
+    public FormAddress(Account account, String addressName, String fullName, String address1, String address2, String city, String state, int zip, String phone, String country) {
         this.account = account;
         this.addressName = addressName;
         this.fullName = fullName;
@@ -102,15 +63,6 @@ public class Address {
         this.zip = zip;
         this.phone = phone;
         this.country = country;
-        this.createDate = createDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Account getAccount() {
@@ -191,53 +143,5 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getFormerAddressName() {
-        return formerAddressName;
-    }
-
-    public void setFormerAddressName(String formerAddressName) {
-        this.formerAddressName = formerAddressName;
-    }
-
-    public Account getRemovedBy() {
-        return removedBy;
-    }
-
-    public void setRemovedBy(Account removedBy) {
-        this.removedBy = removedBy;
-    }
-
-    public Date getRemoveDate() {
-        return removeDate;
-    }
-
-    public void setRemoveDate(Date removeDate) {
-        this.removeDate = removeDate;
-    }
-
-    public boolean isRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(boolean removed) {
-        this.removed = removed;
-    }
-
-    public Address getFormerAddress() {
-        return formerAddress;
-    }
-
-    public void setFormerAddress(Address formerAddress) {
-        this.formerAddress = formerAddress;
     }
 }

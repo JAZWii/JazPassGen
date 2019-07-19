@@ -32,4 +32,28 @@ public class RestViews {
 
     public interface AccountCriticalDetailed extends AccountPublicDetailed {
     }
+
+    public interface LoginPublicMinimal extends PublicMinimal {
+    }
+
+    public interface LoginPublicDetailed extends LoginPublicMinimal, AccountPublicMinimal{
+    }
+
+    public interface LoginPublicCriticalMinimal extends PublicMinimal, AccountPublicDetailed{
+    }
+
+    public interface LoginCriticalDetailed extends LoginPublicDetailed, LoginPublicCriticalMinimal {
+    }
+
+    public interface AddressPublicMinimal extends PublicMinimal {
+    }
+
+    public interface AddressPublicDetailed extends AddressPublicMinimal, AccountPublicMinimal{
+    }
+
+    public interface AddressPublicCriticalMinimal extends PublicMinimal, AccountPublicDetailed{
+    }
+
+    public interface AddressCriticalDetailed extends AddressPublicDetailed, AddressPublicCriticalMinimal {
+    }
 }

@@ -47,7 +47,7 @@ public class ConfigConstants implements Serializable {
     public void setGoogleMapsKey(String value) {
         GOOGLE_MAPS_KEY = value;
     }
-
+/*
     @Value("${jazpassgen.upload.settings.directory}")
     public void setUploadDirectory(String value) {
         UPLOAD_DIRECTORY = value;
@@ -67,4 +67,5 @@ public class ConfigConstants implements Serializable {
     public void setDebugMode(boolean value) {
         DEBUG_MODE = value;
     }
+ */
 }

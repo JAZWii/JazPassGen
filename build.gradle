@@ -51,7 +51,7 @@ dependencies {
 
     //LGPL-2.1
     compile 'org.mariadb.jdbc:mariadb-java-client'
-    compile 'mysql:mysql-connector-java'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
     compile 'com.microsoft.sqlserver:mssql-jdbc'
 
     //custom license
