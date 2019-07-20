@@ -12,7 +12,7 @@ import java.util.Date;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(RestViews.AccountPublicMinimal.class)
+    @JsonView(RestViews.AddressPublicMinimal.class)
     private int id;
 
     @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
@@ -22,7 +22,7 @@ public class Address {
     private Account account;
 
     @Column(name = "address_name", length = 128, nullable = false, unique = true)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonView(RestViews.AddressPublicMinimal.class)
     private String addressName;
 
     @Column(name = "former_address_name", length = 256)
@@ -30,35 +30,35 @@ public class Address {
     private String formerAddressName;
     
     @Column(name = "full_name", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String fullName;
 
     @Column(name = "address1", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String address1;
 
     @Column(name = "address2", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String address2;
 
     @Column(name = "city", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String city;
 
     @Column(name = "state", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String state;
 
     @Column(name = "zip", length = 5, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private int zip;
 
     @Column(name = "phone", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String phone;
 
     @Column(name = "country", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private String country;
 
     @Column(name = "create_date", columnDefinition = "DATETIME")

@@ -23,6 +23,7 @@ import javax.validation.Valid;
 public class AddressController {
     @Autowired
     private AddressService addressService;
+
     @GetMapping(value = "/addresses", name = "get_addresses")
     @JsonView(RestViews.AddressPublicMinimal.class)
     public AddressListResponse getAddresses(@AuthenticationPrincipal Account account) {

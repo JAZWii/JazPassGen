@@ -2,28 +2,30 @@ package com.jazwii.jazpassgen.Pojo.FormData;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jazwii.jazpassgen.Entity.Model.Account;
+import com.jazwii.jazpassgen.Singleton.MessageConstants;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 public class FormLogin {
-    @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    })
+    @JsonProperty("account_id")
     private Account account;
 
+    @NotNull(message = MessageConstants.INVALID_LOGIN_NAME)
     @JsonProperty("login_name")
     private String loginName;
 
+    @NotNull(message = MessageConstants.INVALID_LOGIN_WEBSITE)
     @JsonProperty("website")
     private String website;
 
     @JsonProperty("email")
     private String email;
 
+    @NotNull(message = MessageConstants.INVALID_LOGIN_USERNAME)
     @JsonProperty("username")
     private String username;
 
+    @NotNull(message = MessageConstants.INVALID_LOGIN_PASSWORD)
     @JsonProperty("password")
     private String password;
 

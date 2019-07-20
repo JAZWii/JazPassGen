@@ -1,14 +1,13 @@
 package com.jazwii.jazpassgen.Entity.Repository;
 
-import com.jazwii.jazpassgen.Entity.Model.Account;
-import com.jazwii.jazpassgen.Entity.Model.Login;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+        import com.jazwii.jazpassgen.Entity.Model.Account;
+        import com.jazwii.jazpassgen.Entity.Model.Login;
+        import org.springframework.stereotype.Repository;
 
-import java.util.List;
+        import java.util.List;
 
 @Repository
-public interface LoginRepository extends CrudRepository<Login, Long> {
+public interface LoginRepository extends CustomRepository<Login, Integer> {
     Login findById(int id);
 
     Login findByUsername(String username);

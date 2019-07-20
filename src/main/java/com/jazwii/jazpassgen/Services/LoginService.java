@@ -59,7 +59,8 @@ public class LoginService {
                     MessageConstants.DUPLICATE_LOGIN
             );
         }
-
+        save(login, true, true);
+        loginRepository.refresh(login);
         return login;
     }
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class FormAccount {
@@ -15,8 +16,8 @@ public class FormAccount {
     private String email;
 
     @NotNull(message = MessageConstants.INVALID_PASSWORD_POLICY)
-//    @Size(min = 8, max = 64, message = MessageConstants.INVALID_PASSWORD_POLICY)
-//    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = MessageConstants.INVALID_PASSWORD_POLICY)
+    @Size(min = 8, max = 64, message = MessageConstants.INVALID_PASSWORD_POLICY)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = MessageConstants.INVALID_PASSWORD_POLICY)
     @JsonProperty("password")
     private String password;
 

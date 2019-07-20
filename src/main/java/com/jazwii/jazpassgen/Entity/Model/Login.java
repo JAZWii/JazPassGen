@@ -22,7 +22,7 @@ public class Login {
     private Account account;
 
     @Column(name = "login_name", length = 128, nullable = false, unique = true)
-    @JsonView(RestViews.LoginPublicDetailed.class)
+    @JsonView(RestViews.LoginPublicMinimal.class)
     private String loginName;
 
     @Column(name = "former_login_name", length = 256)
@@ -30,7 +30,7 @@ public class Login {
     private String formerLoginName;
 
     @Column(name = "website", length = 128, nullable = false)
-    @JsonView(RestViews.LoginPublicDetailed.class)
+    @JsonView(RestViews.LoginPublicMinimal.class)
     private String website;
 
     @Column(name = "email", length = 128, nullable = false)

@@ -1,52 +1,47 @@
 package com.jazwii.jazpassgen.Pojo.FormData;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jazwii.jazpassgen.Entity.Model.Account;
-import com.jazwii.jazpassgen.Singleton.RestViews;
+import com.jazwii.jazpassgen.Singleton.MessageConstants;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class FormAddress {
-    @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "report_id", referencedColumnName = "id", nullable = false)
-    })
+    @NotNull(message = MessageConstants.INVALID_ACCOUNT_ID)
+    @JsonProperty("account_id")
     private Account account;
 
-    @Column(name = "address_name", length = 128, nullable = false, unique = true)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @NotNull(message = MessageConstants.INVALID_ACCOUNT_ID)
+    @Size(min = 1, max = 32, message = MessageConstants.INVALID_ADDRESS_NAME)
+    @JsonProperty("address_name")
     private String addressName;
 
-    @Column(name = "full_name", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonProperty("full_name")
     private String fullName;
 
-    @Column(name = "address1", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @NotNull(message = MessageConstants.INVALID_ADDRESS_ADDRESS1)
+    @JsonProperty("address1")
     private String address1;
 
-    @Column(name = "address2", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonProperty("address2")
     private String address2;
 
-    @Column(name = "city", length = 128, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @JsonProperty("city")
     private String city;
 
-    @Column(name = "state", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonProperty("state")
     private String state;
 
-    @Column(name = "zip", length = 5, nullable = false)
-    @JsonView(RestViews.AccountPublicDetailed.class)
+    @NotNull(message = MessageConstants.INVALID_ADDRESS_ZIP)
+    @JsonProperty("zip")
     private int zip;
 
-    @Column(name = "phone", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @JsonProperty("phone")
     private String phone;
 
-    @Column(name = "country", length = 128)
-    @JsonView(RestViews.AccountCriticalDetailed.class)
+    @NotNull(message = MessageConstants.INVALID_ADDRESS_COUNTRY)
+    @JsonProperty("country")
     private String country;
 
     public FormAddress() {
