@@ -8,7 +8,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = DatabaseConstants.TABLE_ADDRESS)
+@Table(name = DatabaseConstants.TABLE_ADDRESS,
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"account_id", "address_name"})
+        })
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +20,7 @@ public class Address {
 
     @ManyToOne(targetEntity = Account.class, fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+            @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     })
     private Account account;
 
@@ -49,11 +52,11 @@ public class Address {
     @JsonView(RestViews.AddressPublicDetailed.class)
     private String state;
 
-    @Column(name = "zip", length = 5, nullable = false)
+    @Column(name = "zip", length = 16, nullable = false)
     @JsonView(RestViews.AddressPublicDetailed.class)
-    private int zip;
+    private String zip;
 
-    @Column(name = "phone", length = 128)
+    @Column(name = "phone", length = 16)
     @JsonView(RestViews.AddressPublicDetailed.class)
     private String phone;
 
@@ -91,7 +94,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(Account account,String addressName, String fullName, String address1, String address2, String city, String state, int zip, String phone, String country, Date createDate) {
+    public Address(Account account,String addressName, String fullName, String address1, String address2, String city, String state, String zip, String phone, String country, Date createDate) {
         this.account = account;
         this.addressName = addressName;
         this.fullName = fullName;
@@ -169,11 +172,11 @@ public class Address {
         this.state = state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

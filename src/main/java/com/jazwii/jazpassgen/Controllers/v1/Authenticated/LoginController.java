@@ -87,4 +87,31 @@ public class LoginController {
         //throws an exception if login does not exist
         return new LoginResponse(loginService.removeLogin(id, account));
     }
+
+    @PutMapping(value = "/login/{id}/password", name = "update_password")
+    @JsonView(RestViews.LoginPublicDetailed.class)
+    public LoginResponse updatePassword(@AuthenticationPrincipal Account account, @PathVariable("id") int id, @Valid @RequestBody FormLogin form, Errors errors) {
+        //validate the form sent by client
+        if (errors.hasErrors()) {
+            throw new CommonException(
+                    HttpStatus.BAD_REQUEST,
+                    CommonException.Type.COMMON_EXCEPTION_INVALID_FORM,
+                    errors
+            );
+        }
+
+        //throws an exception if login does not exist
+        Login login = loginService.getLoginById(id);
+        Login newLogin;
+        //remove the login, and then re-create a new one
+        try {
+            loginService.removeLogin(login.getId(), account);
+            newLogin = loginService.createLoginNewPassword(form, account, form.isUseDigits(), form.isUseLowerCase(), form.isUseUpperCase(), form.getLength());
+        } catch (Exception ex) {
+            loginService.restoreLogin(login.getId(), account);
+            throw ex;
+        }
+        //update login information and save it
+        return getLoginInformation(account, newLogin.getId());
+    }
 }

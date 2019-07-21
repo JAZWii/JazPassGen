@@ -9,11 +9,7 @@ import javax.validation.constraints.Size;
 
 public class FormAddress {
     @NotNull(message = MessageConstants.INVALID_ACCOUNT_ID)
-    @JsonProperty("account_id")
-    private Account account;
-
-    @NotNull(message = MessageConstants.INVALID_ACCOUNT_ID)
-    @Size(min = 1, max = 32, message = MessageConstants.INVALID_ADDRESS_NAME)
+    @Size(min = 1, max = 64, message = MessageConstants.INVALID_ADDRESS_NAME)
     @JsonProperty("address_name")
     private String addressName;
 
@@ -35,7 +31,7 @@ public class FormAddress {
 
     @NotNull(message = MessageConstants.INVALID_ADDRESS_ZIP)
     @JsonProperty("zip")
-    private int zip;
+    private String zip;
 
     @JsonProperty("phone")
     private String phone;
@@ -47,8 +43,7 @@ public class FormAddress {
     public FormAddress() {
     }
 
-    public FormAddress(Account account, String addressName, String fullName, String address1, String address2, String city, String state, int zip, String phone, String country) {
-        this.account = account;
+    public FormAddress(String addressName, String fullName, String address1, String address2, String city, String state, String zip, String phone, String country) {
         this.addressName = addressName;
         this.fullName = fullName;
         this.address1 = address1;
@@ -58,14 +53,6 @@ public class FormAddress {
         this.zip = zip;
         this.phone = phone;
         this.country = country;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public String getAddressName() {
@@ -116,11 +103,11 @@ public class FormAddress {
         this.state = state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

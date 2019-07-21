@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LoginListResponse {
     @JsonProperty("logins")
-    @JsonView(RestViews.PublicMinimal.class)
+    @JsonView(RestViews.LoginPublicMinimal.class)
     private List<Login> logins;
 
     public LoginListResponse() {

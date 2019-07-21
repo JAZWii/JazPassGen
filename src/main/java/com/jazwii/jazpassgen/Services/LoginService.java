@@ -5,6 +5,7 @@ import com.jazwii.jazpassgen.Entity.Model.Account;
 import com.jazwii.jazpassgen.Entity.Model.Login;
 import com.jazwii.jazpassgen.Entity.Repository.LoginRepository;
 import com.jazwii.jazpassgen.Exception.Exception.CommonException;
+import com.jazwii.jazpassgen.PasswordGenerator;
 import com.jazwii.jazpassgen.Pojo.FormData.FormLogin;
 import com.jazwii.jazpassgen.Singleton.MessageConstants;
 import org.apache.commons.lang.RandomStringUtils;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Primary
 @Service
@@ -66,7 +68,44 @@ public class LoginService {
 
     public Login createLogin(FormLogin form, Account account) {
         //create an empty login and update it by uy passing the form to update login method
-        return createLogin(form, account);
+        return createLogin(form, account, true);
+    }
+
+    public Login createLoginNewPassword(FormLogin form, Account account, boolean useDigits, boolean useLowerCase, boolean useUpperCase, int length) {
+        //create an empty login and update it by uy passing the form to update login method
+        return updatePassword(form, account, useDigits, useLowerCase, useUpperCase, length);
+    }
+
+    public Login createLogin(FormLogin form, Account account, boolean save) {
+        //create an empty report and update it by uy passing the form to update report method
+        return updateLogin(new Login(), form, account, save);
+    }
+
+    public Login updateLogin(Login login, FormLogin form, Account account, boolean save) {
+        //check if code already exist
+        Login duplicateReport = loginRepository.findFirstByLoginName(form.getLoginName());
+        if (save && duplicateReport != null && login.getId() != duplicateReport.getId()) {
+            throw new CommonException(
+                    HttpStatus.BAD_REQUEST,
+                    CommonException.Type.COMMON_EXCEPTION_INVALID_FORM,
+                    MessageConstants.DUPLICATE_LOGIN
+            );
+        }
+
+        //update login's information
+        login.setAccount(account);
+        login.setLoginName(form.getLoginName());
+        login.setEmail(form.getEmail());
+        login.setPassword(form.getPassword());
+        login.setUsername(form.getUsername());
+        login.setWebsite(form.getWebsite());
+
+        //save login and return it
+        if (save) {
+            save(login, true, true);
+            loginRepository.refresh(login);
+        }
+        return login;
     }
 
     public Login removeLogin(int loginId, Account account) {
@@ -108,6 +147,30 @@ public class LoginService {
 
     public void save(Login login, boolean recursiveSave, boolean deleteDependant) {
         loginRepository.save(login);
+    }
+
+    public Login updatePassword(FormLogin form, Account account, boolean useDigits, boolean useLowerCase, boolean useUpperCase, int length){
+        String password = generatePassword(useDigits,useLowerCase,useUpperCase,length);
+        form.setPassword(password);
+        return createLogin(form, account, true);
+    }
+
+    private String generatePassword(boolean useDigits, boolean useLowerCase, boolean useUpperCase){
+        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                .useDigits(useDigits)
+                .useLower(useLowerCase)
+                .useUpper(useUpperCase)
+                .build();
+        return passwordGenerator.generate(8);
+    }
+
+    private String generatePassword(boolean useDigits, boolean useLowerCase, boolean useUpperCase, int length){
+        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                .useDigits(useDigits)
+                .useLower(useLowerCase)
+                .useUpper(useUpperCase)
+                .build();
+        return passwordGenerator.generate(length);
     }
 
     private Login removeLogin(Login login, Account account) {

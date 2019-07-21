@@ -3,6 +3,7 @@ package com.jazwii.jazpassgen.Services;
 import com.google.common.collect.Lists;
 import com.jazwii.jazpassgen.Entity.Model.Account;
 import com.jazwii.jazpassgen.Entity.Model.Address;
+import com.jazwii.jazpassgen.Entity.Model.Login;
 import com.jazwii.jazpassgen.Entity.Repository.AddressRepository;
 import com.jazwii.jazpassgen.Exception.Exception.CommonException;
 import com.jazwii.jazpassgen.Pojo.FormData.FormAddress;
@@ -49,10 +50,20 @@ public class AddressService {
         return address;
     }
 
-    public Address updateAddress(Address address, FormAddress form, Account account) {
+    public Address createAddress(FormAddress form, Account account) {
+        //create an empty address and update it by uy passing the form to update address method
+        return createAddress(form, account, true);
+    }
+
+    public Address createAddress(FormAddress form, Account account, boolean save) {
+        //create an empty report and update it by uy passing the form to update report method
+        return updateAddress(new Address(), form, account, save);
+    }
+
+    public Address updateAddress(Address address, FormAddress form, Account account, boolean save) {
         //check if code already exist
-        Address duplicateAddress = addressRepository.findFirstByAddressNameAndRemovedIsFalse(form.getAddressName());
-        if (duplicateAddress != null && address.getId() != duplicateAddress.getId()) {
+        Address duplicateReport = addressRepository.findFirstByAddressNameAndRemovedIsFalse(form.getAddressName());
+        if (save && duplicateReport != null && address.getId() != duplicateReport.getId()) {
             throw new CommonException(
                     HttpStatus.BAD_REQUEST,
                     CommonException.Type.COMMON_EXCEPTION_INVALID_FORM,
@@ -60,12 +71,24 @@ public class AddressService {
             );
         }
 
-        return address;
-    }
+        //update login's information
+        address.setAccount(account);
+        address.setAddressName(form.getAddressName());
+        address.setFullName(form.getFullName());
+        address.setAddress1(form.getAddress1());
+        address.setAddress2(form.getAddress2());
+        address.setCity(form.getCity());
+        address.setZip(form.getZip());
+        address.setState(form.getState());
+        address.setCountry(form.getCountry());
+        address.setPhone(form.getPhone());
 
-    public Address createAddress(FormAddress form, Account account) {
-        //create an empty address and update it by uy passing the form to update address method
-        return createAddress(form, account);
+        //save login and return it
+        if (save) {
+            save(address, true, true);
+            addressRepository.refresh(address);
+        }
+        return address;
     }
 
     public Address removeAddress(int addressId, Account account) {

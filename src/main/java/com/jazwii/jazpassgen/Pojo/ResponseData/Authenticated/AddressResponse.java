@@ -7,7 +7,7 @@ import com.jazwii.jazpassgen.Singleton.RestViews;
 
 public class AddressResponse {
     @JsonProperty("address")
-    @JsonView(RestViews.PublicMinimal.class)
+    @JsonView(RestViews.AddressPublicDetailed.class)
     private Address address;
 
     public AddressResponse() {
@@ -17,11 +17,11 @@ public class AddressResponse {
         this.address = address;
     }
 
-    public Address getAccount() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAccount(Address account) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

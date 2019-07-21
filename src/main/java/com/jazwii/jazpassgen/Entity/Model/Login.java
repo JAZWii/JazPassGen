@@ -8,7 +8,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = DatabaseConstants.TABLE_LOGIN)
+@Table(name = DatabaseConstants.TABLE_LOGIN,
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"account_id", "login_name"})
+        })
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
